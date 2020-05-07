@@ -7,12 +7,14 @@ import queue
 import subprocess
 import threading
 import time
+import sys
 
 
 def getUrl(url):
     os.chdir("/home/chris/Videos/kmedia/incoming")
     cmd = ["/home/chris/bin/youtube-dl", url]
     res = subprocess.run(cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+
 
 def doYouTube(Q):
     try:
@@ -27,6 +29,10 @@ def doYouTube(Q):
                 url = tmp[0]
                 print(url)
                 getUrl(url)
+    except Exception as e:
+        print(f"Exception in doYouTube: {e}")
+        sys.exit(1)
+
 
 def goBabe():
     """youtube urls look like
