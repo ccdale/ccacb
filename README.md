@@ -3,10 +3,19 @@ Watches the clipboard for youtube urls and downloads them.
 
 ## install
 
+from pypi:
+
 ```
+python3 -m pip install ccacb --user --upgrade
+```
+
+from the repo (requires poetry):
+```
+git clone https://github.com/ccdale/ccacb.git
+cd ccacb
 poetry install
 poetry build
-python3 -m pip install dist/ccacb-0.6.5-py3-none-any.whl --user --upgrade
+python3 -m pip install dist/ccacb-0.6.6-py3-none-any.whl --user --upgrade
 ```
 
 ## config
