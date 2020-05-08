@@ -61,7 +61,7 @@ def main():
     userd = os.environ.get("HOME", os.path.expanduser("~"))
     defd = {
         "incoming": "/".join([userd, "Videos/kmedia/incoming"]),
-        "youtubedl": "/".join(userd, "bin/youtube-dl"),
+        "youtubedl": "/".join([userd, "bin/youtube-dl"]),
     }
     cf = ccaconfig.ccaConfig(appname="ytcb", default=defd)
     cfg = cf.envOverride()
