@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Watches the system clipboard for youtube urls"""
+import ccalogging
 import os
 import pyperclip
 from pyperclip import waitForNewPaste
@@ -10,6 +11,10 @@ import time
 import sys
 
 import ccacb
+
+ccalogging.setConsoleOut()
+ccalogging.setInfo()
+log = ccalogging.log
 
 
 def getUrl(url):
@@ -32,7 +37,7 @@ def doYouTube(Q):
                 print(url)
                 getUrl(url)
     except Exception as e:
-        print(f"Exception in doYouTube: {e}")
+        log.error(f"Exception in doYouTube: {e}")
         sys.exit(1)
 
 
@@ -42,7 +47,7 @@ def goBabe():
     https://www.youtube.com/watch?v=hMk6rF4Tzsg
     https://www.youtube.com/watch?v=pL3Yzjk5R4M&list=RDCMUCmM3eCpmWKLJj2PDW_jdGkg&start_radio=1&t=8
     """
-    print(f"ccacb - youtube-dl clipboard queue processor {ccacb.__version__}")
+    log.info(f"ccacb - youtube-dl clipboard queue processor {ccacb.__version__}")
     Q = queue.Queue()
     thread = threading.Thread(target=doYouTube, args=[Q])
     thread.start()
@@ -52,10 +57,10 @@ def goBabe():
             if txt.startswith("https://www.youtube.com/watch"):
                 Q.put(txt)
     except KeyboardInterrupt:
-        print("Will finish off the Q, then exit")
+        log.info("Interrupted: Will finish off the Q, then exit")
     Q.put("STOP")
     thread.join()
-    print("ccacb has finished")
+    log.info("ccacb has finished")
 
 
 if __name__ == "__main__":
