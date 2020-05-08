@@ -41,18 +41,23 @@ def goBabe():
     https://www.youtube.com/watch?v=pL3Yzjk5R4M&list=RDCMUCmM3eCpmWKLJj2PDW_jdGkg&start_radio=1&t=8
     """
     Q = queue.Queue()
+    thread = threading.Thread(target=doYouTube, args=[Q])
+    thread.start()
     try:
-        thread = threading.Thread(target=doYouTube, args=[Q])
-        thread.start()
         while True:
             txt = waitForNewPaste()
             if txt.startswith("https://www.youtube.com/watch"):
                 Q.put(txt)
     except KeyboardInterrupt:
         print("Will finish off the Q, then exit")
+    try:
         Q.put("STOP")
-        thread.join()
-        print("Q has completed")
+    except KeyboardInterrupt:
+        print("will finish current download, dump Q and exit")
+        while not Q.empty():
+            print(Q.get())
+        Q.put("STOP")
+    thread.join()
 
 
 if __name__ == "__main__":
