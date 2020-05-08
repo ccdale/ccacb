@@ -9,6 +9,8 @@ import threading
 import time
 import sys
 
+import ccacb
+
 
 def getUrl(url):
     os.chdir("/home/chris/Videos/kmedia/incoming")
@@ -40,6 +42,7 @@ def goBabe():
     https://www.youtube.com/watch?v=hMk6rF4Tzsg
     https://www.youtube.com/watch?v=pL3Yzjk5R4M&list=RDCMUCmM3eCpmWKLJj2PDW_jdGkg&start_radio=1&t=8
     """
+    print(f"ccacb - youtube-dl clipboard queue processor {ccacb.__version__}")
     Q = queue.Queue()
     thread = threading.Thread(target=doYouTube, args=[Q])
     thread.start()
@@ -58,6 +61,7 @@ def goBabe():
             print(Q.get())
         Q.put("STOP")
     thread.join()
+    print("ccacb has finished")
 
 
 if __name__ == "__main__":
