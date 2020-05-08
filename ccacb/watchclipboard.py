@@ -58,8 +58,13 @@ def main():
     youtubedl is the full path to the youtube-dl executable
     """
     log.info(f"ccacb - youtube-dl clipboard queue processor {ccacb.__version__}")
-    cf = ccaconfig.ccaConfig(appname="ytcb")
-    cfg = cf.findConfig()
+    userd = os.environ.get("HOME", os.path.expanduser("~"))
+    defd = {
+        "incoming": "/".join([userd, "Videos/kmedia/incoming"]),
+        "youtubedl": "/".join(userd, "bin/youtube-dl"),
+    }
+    cf = ccaconfig.ccaConfig(appname="ytcb", default=defd)
+    cfg = cf.envOverride()
     log.info(f"""youtube-dl will store files in {cfg["incoming"]}""")
     Q = queue.Queue()
     thread = threading.Thread(target=doYouTube, args=[cfg, Q])
