@@ -9,7 +9,7 @@ import threading
 import time
 import sys
 
-from ccaconfig import ccaConfig
+from ccaconfig.config import ccaConfig
 import ccalogging
 
 import ccacb
@@ -17,6 +17,8 @@ import ccacb
 ccalogging.setConsoleOut()
 ccalogging.setInfo()
 log = ccalogging.log
+
+appname = "ytcb"
 
 
 def getUrl(cfg, url):
@@ -57,13 +59,13 @@ def main():
     incoming is the path to store incoming videos from youtube
     youtubedl is the full path to the youtube-dl executable
     """
-    log.info(f"ccacb - youtube-dl clipboard queue processor {ccacb.__version__}")
+    log.info(f"{appname} - youtube-dl clipboard queue processor {ccacb.__version__}")
     userd = os.environ.get("HOME", os.path.expanduser("~"))
     defd = {
-        "incoming": "/".join([userd, "Videos/kmedia/incoming"]),
+        "incoming": "/".join([userd]),
         "youtubedl": "/".join([userd, "bin/youtube-dl"]),
     }
-    cf = ccaConfig(appname="ytcb", default=defd)
+    cf = ccaConfig(appname=appname, defaultd=defd)
     cfg = cf.envOverride()
     log.info(f"""Using {cfg["youtubedl"]}""")
     log.info(f"""youtube-dl will store files in {cfg["incoming"]}""")
@@ -79,7 +81,7 @@ def main():
         log.info("Interrupted: Will finish off the Q, then exit")
     Q.put("STOP")
     thread.join()
-    log.info("ccacb has finished")
+    log.info(f"{appname} has finished")
 
 
 if __name__ == "__main__":

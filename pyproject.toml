@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ccacb"
-version = "0.6.2"
+version = "0.6.3"
 description = "Watches the clipboard for youtube urls and downloads them"
 authors = ["Chris Allison <chris.charles.allison+ccacb@gmail.com>"]
 license = "GPL-3.0-or-later"
@@ -10,7 +10,6 @@ python = "^3.7"
 pyperclip = "^1.8.0"
 ccalogging = "^0.3.3"
 ccaconfig = "^0.3.3"
-toml = "^0.10.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.4.1"

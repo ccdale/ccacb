@@ -27,7 +27,7 @@ description = "Easily find and read application configuration files."
 name = "ccaconfig"
 optional = false
 python-versions = ">=3.6"
-version = "0.3.3"
+version = "0.3.4"
 
 [package.dependencies]
 ccalogging = ">=0.3.3,<0.4.0"
@@ -133,7 +133,7 @@ description = "pytest: simple powerful testing with Python"
 name = "pytest"
 optional = false
 python-versions = ">=3.5"
-version = "5.4.1"
+version = "5.4.2"
 
 [package.dependencies]
 atomicwrites = ">=1.0"
@@ -171,14 +171,6 @@ version = "1.14.0"
 
 [[package]]
 category = "main"
-description = "Python Library for Tom's Obvious, Minimal Language"
-name = "toml"
-optional = false
-python-versions = "*"
-version = "0.10.0"
-
-[[package]]
-category = "main"
 description = "Measures number of Terminal column cells of wide-character codes"
 name = "wcwidth"
 optional = false
@@ -199,7 +191,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "2034886d27450e1938b79b61c9cc8d4f69e41bf61ac4d8647071b1090d03a509"
+content-hash = "98914d1bb153f2ce37cdb09ab507704d551db47ac8bbaed651d9e7c02fb5322c"
 python-versions = "^3.7"
 
 [metadata.files]
@@ -212,8 +204,8 @@ attrs = [
     {file = "attrs-19.3.0.tar.gz", hash = "sha256:f7b7ce16570fe9965acd6d30101a28f62fb4a7f9e926b3bbc9b61f8b04247e72"},
 ]
 ccaconfig = [
-    {file = "ccaconfig-0.3.3-py3-none-any.whl", hash = "sha256:a9f43aeda1abae3a5aa3b735f0ad44654d0ed7f3b04b61f57b0172677fff769b"},
-    {file = "ccaconfig-0.3.3.tar.gz", hash = "sha256:d1cb36fa035619f0eb1ffc40a71be5bdafe2aa94aab1d7ab5f98b902338b942e"},
+    {file = "ccaconfig-0.3.4-py3-none-any.whl", hash = "sha256:359f93cffe21558ab0a03d0ca9e035efc4c2aa1210762dd561e7e89a756724de"},
+    {file = "ccaconfig-0.3.4.tar.gz", hash = "sha256:2d5d57175ed54be9d7fad4c07cab01ce6402ad0926095d938944a468f21297fd"},
 ]
 ccalogging = [
     {file = "ccalogging-0.3.3-py3-none-any.whl", hash = "sha256:8ecc79d6198f78fa1a05b56b47ae7cad997c87c8ed1470a6d47920823fd6704b"},
@@ -251,8 +243,8 @@ pyperclip = [
     {file = "pyperclip-1.8.0.tar.gz", hash = "sha256:b75b975160428d84608c26edba2dec146e7799566aea42c1fe1b32e72b6028f2"},
 ]
 pytest = [
-    {file = "pytest-5.4.1-py3-none-any.whl", hash = "sha256:0e5b30f5cb04e887b91b1ee519fa3d89049595f428c1db76e73bd7f17b09b172"},
-    {file = "pytest-5.4.1.tar.gz", hash = "sha256:84dde37075b8805f3d1f392cc47e38a0e59518fb46a431cfdaf7cf1ce805f970"},
+    {file = "pytest-5.4.2-py3-none-any.whl", hash = "sha256:95c710d0a72d91c13fae35dce195633c929c3792f54125919847fdcdf7caa0d3"},
+    {file = "pytest-5.4.2.tar.gz", hash = "sha256:eb2b5e935f6a019317e455b6da83dd8650ac9ffd2ee73a7b657a30873d67a698"},
 ]
 pyyaml = [
     {file = "PyYAML-5.3.1-cp27-cp27m-win32.whl", hash = "sha256:74809a57b329d6cc0fdccee6318f44b9b8649961fa73144a98735b0aaf029f1f"},
@@ -270,11 +262,6 @@ pyyaml = [
 six = [
     {file = "six-1.14.0-py2.py3-none-any.whl", hash = "sha256:8f3cd2e254d8f793e7f3d6d9df77b92252b52637291d0f0da013c76ea2724b6c"},
     {file = "six-1.14.0.tar.gz", hash = "sha256:236bdbdce46e6e6a3d61a337c0f8b763ca1e8717c03b369e87a7ec7ce1319c0a"},
-]
-toml = [
-    {file = "toml-0.10.0-py2.7.egg", hash = "sha256:f1db651f9657708513243e61e6cc67d101a39bad662eaa9b5546f789338e07a3"},
-    {file = "toml-0.10.0-py2.py3-none-any.whl", hash = "sha256:235682dd292d5899d361a811df37e04a8828a5b1da3115886b73cf81ebc9100e"},
-    {file = "toml-0.10.0.tar.gz", hash = "sha256:229f81c57791a41d65e399fc06bf0848bab550a9dfd5ed66df18ce5f05e73d5c"},
 ]
 wcwidth = [
     {file = "wcwidth-0.1.9-py2.py3-none-any.whl", hash = "sha256:cafe2186b3c009a04067022ce1dcd79cb38d8d65ee4f4791b8888d6599d1bbe1"},
