@@ -65,6 +65,7 @@ def main():
     }
     cf = ccaconfig.ccaConfig(appname="ytcb", default=defd)
     cfg = cf.envOverride()
+    log.info(f"""Using {cfg["youtubedl"]}""")
     log.info(f"""youtube-dl will store files in {cfg["incoming"]}""")
     Q = queue.Queue()
     thread = threading.Thread(target=doYouTube, args=[cfg, Q])
