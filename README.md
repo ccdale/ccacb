@@ -6,7 +6,7 @@ Watches the clipboard for youtube urls and downloads them.
 ```
 poetry install
 poetry build
-python3 -m pip install dist/ccacb-0.6.5-py3-none-any.whl --user
+python3 -m pip install dist/ccacb-0.6.5-py3-none-any.whl --user --upgrade
 ```
 
 ## config
