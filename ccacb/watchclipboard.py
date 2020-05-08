@@ -53,13 +53,7 @@ def goBabe():
                 Q.put(txt)
     except KeyboardInterrupt:
         print("Will finish off the Q, then exit")
-    try:
-        Q.put("STOP")
-    except KeyboardInterrupt:
-        print("will finish current download, dump Q and exit")
-        while not Q.empty():
-            print(Q.get())
-        Q.put("STOP")
+    Q.put("STOP")
     thread.join()
     print("ccacb has finished")
 
