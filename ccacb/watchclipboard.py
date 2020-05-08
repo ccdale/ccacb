@@ -38,7 +38,7 @@ def doYouTube(cfg, Q):
                     break
                 tmp = iurl.split("&")
                 url = tmp[0]
-                print(url)
+                log.info(f"downloading {url}")
                 getUrl(cfg, url)
     except Exception as e:
         log.error(f"Exception in doYouTube: {e}")
@@ -76,6 +76,7 @@ def main():
         while True:
             txt = waitForNewPaste()
             if txt.startswith("https://www.youtube.com/watch"):
+                log.info(f"adding to Q: {txt}")
                 Q.put(txt)
     except KeyboardInterrupt:
         log.info("Interrupted: Will finish off the Q, then exit")
