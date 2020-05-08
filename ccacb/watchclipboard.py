@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """Watches the system clipboard for youtube urls"""
-import ccalogging
 import os
 import pyperclip
 from pyperclip import waitForNewPaste
@@ -10,6 +9,9 @@ import threading
 import time
 import sys
 
+import ccaconfig
+import ccalogging
+
 import ccacb
 
 ccalogging.setConsoleOut()
@@ -17,13 +19,13 @@ ccalogging.setInfo()
 log = ccalogging.log
 
 
-def getUrl(url):
-    os.chdir("/home/chris/Videos/kmedia/incoming")
-    cmd = ["/home/chris/bin/youtube-dl", url]
+def getUrl(cfg, url):
+    os.chdir(cfg["incoming"])
+    cmd = [cfg["youtubedl"], url]
     res = subprocess.run(cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
 
 
-def doYouTube(Q):
+def doYouTube(cfg, Q):
     try:
         while True:
             if Q.empty():
@@ -35,21 +37,32 @@ def doYouTube(Q):
                 tmp = iurl.split("&")
                 url = tmp[0]
                 print(url)
-                getUrl(url)
+                getUrl(cfg, url)
     except Exception as e:
         log.error(f"Exception in doYouTube: {e}")
         sys.exit(1)
 
 
-def goBabe():
+def main():
     """youtube urls look like
 
     https://www.youtube.com/watch?v=hMk6rF4Tzsg
     https://www.youtube.com/watch?v=pL3Yzjk5R4M&list=RDCMUCmM3eCpmWKLJj2PDW_jdGkg&start_radio=1&t=8
+
+    config file at ~/.config/ytcb:
+        ---
+        incoming: /home/chris/Videos/kmedia/incoming
+        youtubedl: /home/chris/bin/youtube-dl
+
+    incoming is the path to store incoming videos from youtube
+    youtubedl is the full path to the youtube-dl executable
     """
     log.info(f"ccacb - youtube-dl clipboard queue processor {ccacb.__version__}")
+    cf = ccaconfig.ccaConfig(appname="ytcb")
+    cfg = cf.findConfig()
+    log.info(f"""youtube-dl will store files in {cfg["incoming"]}""")
     Q = queue.Queue()
-    thread = threading.Thread(target=doYouTube, args=[Q])
+    thread = threading.Thread(target=doYouTube, args=[cfg, Q])
     thread.start()
     try:
         while True:
@@ -64,4 +77,4 @@ def goBabe():
 
 
 if __name__ == "__main__":
-    goBabe()
+    main()
