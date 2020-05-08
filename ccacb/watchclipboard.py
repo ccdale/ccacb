@@ -9,7 +9,7 @@ import threading
 import time
 import sys
 
-import ccaconfig
+from ccaconfig import ccaConfig
 import ccalogging
 
 import ccacb
@@ -63,7 +63,7 @@ def main():
         "incoming": "/".join([userd, "Videos/kmedia/incoming"]),
         "youtubedl": "/".join([userd, "bin/youtube-dl"]),
     }
-    cf = ccaconfig.ccaConfig(appname="ytcb", default=defd)
+    cf = ccaConfig(appname="ytcb", default=defd)
     cfg = cf.envOverride()
     log.info(f"""Using {cfg["youtubedl"]}""")
     log.info(f"""youtube-dl will store files in {cfg["incoming"]}""")
