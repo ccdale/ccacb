@@ -35,11 +35,14 @@ def doYouTube(cfg, Q):
             else:
                 iurl = Q.get()
                 if iurl == "STOP":
+                    Q.task_done()
                     break
                 tmp = iurl.split("&")
                 url = tmp[0]
                 log.info(f"downloading {url}")
                 getUrl(cfg, url)
+                Q.task_done()
+                log.info(f"{Q.qsize()} items on the Queue.")
     except Exception as e:
         log.error(f"Exception in doYouTube: {e}")
         sys.exit(1)
