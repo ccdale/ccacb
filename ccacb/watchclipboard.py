@@ -27,6 +27,19 @@ def getUrl(cfg, url):
     res = subprocess.run(cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
 
 
+def updateYoutubedl(cfg):
+    cmd = [cfg["youtubedl"], "-U"]
+    res = subprocess.run(cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+    stderr = res.stderr.decode()
+    stdout = res.stdout.decode()
+    msg = "Updating youtube-dl "
+    if len(stderr) > 0:
+        msg += f" stderr: {stderr}"
+    if len(stdout) > 0:
+        msg += f" {stdout}"
+    log.info(msg)
+
+
 def doYouTube(cfg, Q):
     try:
         while True:
@@ -72,6 +85,7 @@ def main():
     cfg = cf.envOverride()
     log.info(f"""Using {cfg["youtubedl"]}""")
     log.info(f"""youtube-dl will store files in {cfg["incoming"]}""")
+    updateYoutubedl(cfg)
     Q = queue.Queue()
     thread = threading.Thread(target=doYouTube, args=[cfg, Q])
     thread.start()
