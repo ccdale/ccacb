@@ -28,11 +28,12 @@ def getUrl(cfg, url):
 
 
 def updateYoutubedl(cfg):
+    log.info("Checking for youtube-dl updates")
     cmd = [cfg["youtubedl"], "-U"]
     res = subprocess.run(cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
     stderr = res.stderr.decode().strip()
     stdout = res.stdout.decode().strip()
-    msg = "Updating youtube-dl "
+    msg = ""
     if len(stderr) > 0:
         msg += f" stderr: {stderr}"
     if len(stdout) > 0:
