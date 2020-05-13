@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ccacb"
-version = "0.6.8"
+version = "0.6.9"
 description = "Watches the clipboard for youtube urls and downloads them"
 authors = ["Chris Allison <chris.charles.allison+ccacb@gmail.com>"]
 license = "GPL-3.0-or-later"

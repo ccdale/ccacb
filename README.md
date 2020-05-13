@@ -1,6 +1,8 @@
 # ytcb
 Watches the clipboard for youtube urls and downloads them.
 
+Will now auto-update youtube-dl on startup
+
 ## install
 
 from pypi:
